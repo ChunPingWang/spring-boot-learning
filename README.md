@@ -176,7 +176,7 @@ spring-boot-learning/
 
 ## 環境需求
 
-- **Java**: 17+
+- **Java**: 21+
 - **Gradle**: 8.5+
 - **IDE**: IntelliJ IDEA / VS Code
 
