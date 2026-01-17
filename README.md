@@ -1,135 +1,73 @@
-# Spring Boot Annotation 分類總覽
+# Spring Boot Learning
 
-本文檔整理 Spring Boot 中常用的 Annotation（註解）分類及其功能說明。
+Spring Boot 學習專案，採用 Gradle 多模組架構，包含多個獨立的學習範例。
 
----
+## 專案結構
+
+```
+spring-boot-learning/
+├── spring-boot-basics/       # Spring Boot 基礎 - 電子商務 REST API 範例
+├── spring-security-demo/     # Spring Security - JWT 認證範例
+├── build.gradle              # 根專案 Gradle 配置
+├── settings.gradle           # 模組配置
+├── SPRING_SECURITY.md        # Spring Security 完整教學
+└── README.md                 # 本文件
+```
+
+## 環境需求
+
+- Java 17+
+- Gradle 8.5+
+
+## 子模組說明
+
+### [spring-boot-basics](./spring-boot-basics/README.md)
+
+電子商務 REST API 範例，展示 Spring Boot 的基礎功能：
+
+- RESTful API 設計與實作
+- JPA/Hibernate 資料持久層
+- Bean Validation 請求驗證
+- Exception Handling 全域異常處理
+- Swagger/OpenAPI 文檔
+
+**啟動**：`./gradlew :spring-boot-basics:bootRun`（Port 8080）
+
+### [spring-security-demo](./spring-security-demo/README.md)
+
+Spring Security 安全框架範例，展示認證與授權機制：
+
+- JWT Token 認證
+- 角色基礎存取控制 (RBAC)
+- 方法級安全 (`@PreAuthorize`)
+- BCrypt 密碼加密
+
+**啟動**：`./gradlew :spring-security-demo:bootRun`（Port 8081）
 
 ## 快速開始
 
-本專案提供完整的電子商務範例程式碼，透過實際運行和測試來學習 Spring Boot 註解。
-
-### 環境需求
-
-- Java 17+
-- Maven 3.8+
-
-### 啟動應用程式
-
 ```bash
-# 編譯專案
-mvn clean compile
+# 編譯所有模組
+./gradlew build
 
-# 啟動應用程式
-mvn spring-boot:run
-```
-
-### 存取服務
-
-| 服務 | URL | 說明 |
-|------|-----|------|
-| Swagger UI | http://localhost:8080/swagger-ui.html | API 文件與測試介面 |
-| H2 Console | http://localhost:8080/h2-console | 資料庫管理介面 |
-| API 文件 | http://localhost:8080/api-docs | OpenAPI JSON 格式 |
-
-### H2 Console 連線資訊
-
-```
-JDBC URL: jdbc:h2:mem:ecommerce
-Username: sa
-Password: (空白)
-```
-
-### 執行測試（TDD）
-
-```bash
 # 執行所有測試
-mvn test
+./gradlew test
 
-# 執行特定測試類別
-mvn test -Dtest=ProductServiceTest
-mvn test -Dtest=ProductRepositoryTest
-mvn test -Dtest=ProductControllerTest
-mvn test -Dtest=OrderControllerIntegrationTest
-
-# 執行測試並產生報告
-mvn test jacoco:report
+# 啟動特定模組
+./gradlew :spring-boot-basics:bootRun
+./gradlew :spring-security-demo:bootRun
 ```
 
-### 專案結構
+## 相關資源
 
-```
-src/
-├── main/java/com/ecommerce/
-│   ├── ECommerceApplication.java      # 應用程式入口 (@SpringBootApplication)
-│   ├── config/
-│   │   ├── OpenApiConfig.java         # Swagger 配置 (@Configuration, @Bean)
-│   │   └── DataInitializer.java       # 資料初始化 (@Component)
-│   ├── controller/
-│   │   ├── ProductController.java     # 商品 API (@RestController, @GetMapping...)
-│   │   └── OrderController.java       # 訂單 API (@PostMapping, @Valid...)
-│   ├── dto/                           # 資料傳輸物件 (@NotNull, @Size, @Email...)
-│   ├── entity/                        # JPA 實體 (@Entity, @Table, @Column...)
-│   ├── exception/                     # 異常處理 (@RestControllerAdvice)
-│   ├── repository/                    # 資料存取層 (@Repository, @Query...)
-│   └── service/                       # 業務邏輯層 (@Service, @Transactional...)
-└── test/java/com/ecommerce/
-    ├── repository/
-    │   └── ProductRepositoryTest.java # Repository 測試 (@DataJpaTest)
-    ├── service/
-    │   ├── ProductServiceTest.java    # Service 單元測試 (@Mock, @InjectMocks)
-    │   └── OrderServiceTest.java      # 複雜業務邏輯測試
-    └── controller/
-        ├── ProductControllerTest.java # Controller 測試 (@WebMvcTest, @MockBean)
-        └── OrderControllerIntegrationTest.java  # 整合測試 (@SpringBootTest)
-```
+- [Spring Security 完整教學](./SPRING_SECURITY.md)
+- [Spring Boot 官方文檔](https://spring.io/projects/spring-boot)
 
-### API 範例
+---
 
-#### 商品管理
+# Spring Boot Annotation 分類總覽
 
-```bash
-# 查詢所有商品
-curl http://localhost:8080/api/v1/products
-
-# 查詢單一商品
-curl http://localhost:8080/api/v1/products/1
-
-# 搜尋商品
-curl http://localhost:8080/api/v1/products/search?keyword=iPhone
-
-# 創建商品
-curl -X POST http://localhost:8080/api/v1/products \
-  -H "Content-Type: application/json" \
-  -d '{"name":"新商品","price":999,"stockQuantity":50}'
-
-# 更新商品
-curl -X PUT http://localhost:8080/api/v1/products/1 \
-  -H "Content-Type: application/json" \
-  -d '{"price":899}'
-
-# 刪除商品
-curl -X DELETE http://localhost:8080/api/v1/products/1
-```
-
-#### 訂單管理
-
-```bash
-# 創建訂單
-curl -X POST http://localhost:8080/api/v1/orders \
-  -H "Content-Type: application/json" \
-  -d '{
-    "customerName": "王小明",
-    "customerEmail": "test@example.com",
-    "shippingAddress": "台北市信義區",
-    "items": [{"productId": 1, "quantity": 2}]
-  }'
-
-# 查詢訂單
-curl http://localhost:8080/api/v1/orders/1
-
-# 取消訂單
-curl -X POST http://localhost:8080/api/v1/orders/1/cancel
-```
+以下整理 Spring Boot 中常用的 Annotation（註解）分類及其功能說明，供學習參考。
 
 ---
 

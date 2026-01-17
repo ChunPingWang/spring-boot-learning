@@ -177,7 +177,7 @@ class OrderControllerIntegrationTest {
                 .items(List.of(
                     OrderItemRequest.builder()
                         .productId(testProduct1.getId())
-                        .quantity(100)  // 庫存只有 50
+                        .quantity(60)  // 庫存只有 50，超過庫存但不超過驗證上限 99
                         .build()
                 ))
                 .build();
