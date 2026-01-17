@@ -10,7 +10,6 @@ spring-boot-learning/
 ├── spring-security-demo/     # Spring Security - JWT 認證範例
 ├── build.gradle              # 根專案 Gradle 配置
 ├── settings.gradle           # 模組配置
-├── SPRING_SECURITY.md        # Spring Security 完整教學
 └── README.md                 # 本文件
 ```
 
@@ -60,7 +59,6 @@ Spring Security 安全框架範例，展示認證與授權機制：
 
 ## 相關資源
 
-- [Spring Security 完整教學](./SPRING_SECURITY.md)
 - [Spring Boot 官方文檔](https://spring.io/projects/spring-boot)
 
 ---
