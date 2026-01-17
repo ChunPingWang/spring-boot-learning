@@ -1,0 +1,4 @@
+rootProject.name = 'spring-boot-learning'
+
+include 'spring-boot-basics'
+include 'spring-security-demo'
