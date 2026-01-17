@@ -64,12 +64,15 @@ graph TB
 
 ```
 spring-boot-learning/
-├── spring-boot-basics/       # 模組一：Spring Boot 基礎
-├── spring-security-demo/     # 模組二：Spring Security 安全
-├── build.gradle              # 根專案 Gradle 配置
-├── settings.gradle           # 模組配置
-├── SPRING_ANNOTATIONS.md     # Spring Boot 註解參考手冊
-└── README.md                 # 本文件
+├── spring-boot-basics/           # 模組一：Spring Boot 基礎
+│   ├── README.md                 # 教學文件（8 章節）
+│   └── ANNOTATIONS.md            # 註解參考手冊
+├── spring-security-demo/         # 模組二：Spring Security 安全
+│   ├── README.md                 # 模組說明
+│   └── SECURITY.md               # 教學文件（6 章節）
+├── build.gradle                  # 根專案 Gradle 配置
+├── settings.gradle               # 模組配置
+└── README.md                     # 本文件
 ```
 
 ---
@@ -80,18 +83,15 @@ spring-boot-learning/
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  1️⃣  Spring Boot 基礎 (spring-boot-basics)                      │
-│      掌握 Spring Boot 核心概念與 REST API 開發                    │
+│  1️⃣  Spring Boot 基礎 (spring-boot-basics/)                     │
+│      ├── README.md      → 8 章節教學                            │
+│      └── ANNOTATIONS.md → 註解參考手冊                           │
 └─────────────────────────────────────────────────────────────────┘
                               ⬇️
 ┌─────────────────────────────────────────────────────────────────┐
-│  2️⃣  Spring Security (spring-security-demo)                     │
-│      學習認證授權機制與企業級安全架構                              │
-└─────────────────────────────────────────────────────────────────┘
-                              ⬇️
-┌─────────────────────────────────────────────────────────────────┐
-│  📖  Annotation 參考手冊 (SPRING_ANNOTATIONS.md)                  │
-│      完整的註解分類與程式碼範例                                    │
+│  2️⃣  Spring Security (spring-security-demo/)                    │
+│      ├── README.md      → 模組使用說明                          │
+│      └── SECURITY.md    → 6 章節教學                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -154,24 +154,23 @@ spring-boot-learning/
 
 ---
 
-## Annotation 參考手冊
+## 參考文件
 
-📁 **文件**：[SPRING_ANNOTATIONS.md](./SPRING_ANNOTATIONS.md)
+各模組包含完整的教學與參考文件：
 
-完整的 Spring Boot 註解分類總覽，包含 10 大分類：
+### Spring Boot 基礎模組
 
-| 分類 | 內容 |
+| 文件 | 說明 |
 |------|------|
-| 核心註解 | @SpringBootApplication、@Configuration |
-| 組件註解 | @Service、@Repository、@Controller |
-| 依賴注入 | @Autowired、@Qualifier、@Value |
-| Web/REST | @GetMapping、@PostMapping、@RequestBody |
-| 數據訪問 | @Entity、@Transactional、@Query |
-| 配置相關 | @ConfigurationProperties、@Profile |
-| AOP | @Aspect、@Before、@Around |
-| 排程 | @Scheduled、@Async |
-| 驗證 | @Valid、@NotNull、@Size |
-| 測試 | @SpringBootTest、@MockBean |
+| [README.md](./spring-boot-basics/README.md) | 8 章節完整教學 |
+| [ANNOTATIONS.md](./spring-boot-basics/ANNOTATIONS.md) | 10 大分類註解參考手冊 |
+
+### Spring Security 模組
+
+| 文件 | 說明 |
+|------|------|
+| [README.md](./spring-security-demo/README.md) | 模組使用說明、API 端點、測試帳號 |
+| [SECURITY.md](./spring-security-demo/SECURITY.md) | 6 章節完整教學 |
 
 ---
 
